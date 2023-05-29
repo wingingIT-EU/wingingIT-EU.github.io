@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>LieU Spy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet"> 
+<style>
+	body {
+  		margin: 20;
+  		background-color: #e1e9fc;
+        font-family: Verdana, sans-serif;
+        text-align: center;
+	}
+    h1{
+    	font-family: Rubik, sans-serif;
+    }
+    p{
+    	font-size: 12px;
+    }
+    #all {
+        width:200px;
+    }
+    .menu1 {
+    	margin:auto;
+        margin-top:20px;
+        margin-bottom:10px;
+    	border-radius: 25px;
+  	border: 2px solid #73AD21;
+  	padding: 20px; 
+ 	width: 290px;
+  	height: 20px;
+        font-size: 14px;
+    }
+    .menu2 {
+    	margin:auto;
+        margin-top:20px;
+        margin-bottom:10px;
+    	border-radius: 25px;
+  	border: 2px solid #73AD21;
+  	padding: 15px; 
+ 	width: 250px;
+  	height: 50px;
+        font-size: 12px;
+    }
+    .textfields {
+    	box-sizing:border-box;
+        padding: 10px;
+  	border:0;
+  	box-shadow:0 0 15px 4px rgba(0,0,0,0.09);
+  	border-radius:10px;
+    }
+    
+    /* container */
+    label {
+      display:block;
+      margin-bottom:4px;
+      position: relative; /* to contain absolute elements */
+      padding-left:30px; /* free space for custom radio button */
+      cursor: pointer;
+    }
+    /* hide default radio button  */
+    label input[type=radio] {
+      position: absolute; /* prevent taking any space */
+      /* cross-browser hidingg */
+      opactiy: 0;
+      width:0; 
+      height:0;
+    }
+    /* custom radio button */
+    label span {
+      position: absolute;
+      /* position to the free space in <label> */
+      top:0;
+      left: calc(50% - 130px);
+      width:20px; 
+      height:20px;
+      background-color: #bbb;
+      border-radius: 50%;
+      transition: .3s background-color; /* slight transition */
+    }
+    /* the check icon */
+    label span:after {
+      content: "";
+      position: absolute;
+      display: none;
+
+      /* middle */
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+      background-color:#fff;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+    }
+    label:hover span {
+      background-color: #ccc;
+    }
+
+    /**** Here's the trick ***/
+    label input:checked ~ span {
+      background-color: #2eaadc;
+    }
+    label input:checked ~ span:after {
+      display:block;
+    }
+    
+    #card {
+    	margin:auto;
+        margin-top:20px;
+        margin-bottom:10px;
+    	border-radius: 10px;
+  		border: 2px solid #aaa;
+  		padding: 15px; 
+ 		width: 150px;
+  		height: 200px;
+        font-size: 16px;
+        font-family: 'Nunito', sans-serif;
+        background-color: #eee;
+    }
+    .button{
+    	margin-top:20px;
+        border-radius: 5px; 
+		text-transform: uppercase;
+        font-weight: bold;
+        
+    }
+    
+    .play_button{
+    	color: #fff;
+    	border: 1px solid #000;
+    	background-color: #73AD21;
+    	font-size:22px;
+    }
+    
+    .card_button{
+    	color: #000;
+    	border: 2px solid #fff;
+    	background-color: #bbb;
+    	font-size:18px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Welcome to the Spy Game!</h1>
+<p></p>
+
+<p><a href="/SpyGame/rules.html">Rules</a></p>
+
+<div id=""all>
+    <h4 class="menu1">Choose the number of players</h4>
+    
+    <input type="text" class="textfields" id="numPLAYERS" maxlenght="100" placeholder="number of players">
+    
+    <h4 class="menu1">Choose the number of spies (max 3)</h4>
+    
+    <input type="text" class="textfields" id="numSPIES" maxlenght="100" placeholder="1,2 or 3">
+    
+    <h4 class="menu2">(Advanced) Choose whether the number of spies is the inserted one or a random number between 1 and the inserted number of spies</h4>
+    <p>In the second case, only the spies will know how many spies there are</p>
+    <div>
+        <label>Inserted number of spies
+            <input type="radio" id="option1" name="opt" value="1" checked="checked"/>
+            <span></span>
+        </label>
+        <label>Random number of spies
+            <input type="radio" id="option2" name="opt" value="2" />
+            <span></span>
+        </label>
+    </div>
+
+    <h4 class="menu1">Choose your dictionary</h4>
+    <div>
+    <label> 575 english words
+    	<input type="radio" id="r1" name="rate" value="575 english words" checked="checked">
+    	<span></span>
+    </label>
+    <label> 682 palavras em português
+    	<input type="radio" id="r2" name="rate" value="677 palavras em portugues">
+    	<span></span>
+    </label>
+    <label> 309 insultos em português
+    	<input type="radio" id="r3" name="rate" value="310 insultos portugueses">
+    	<span></span>
+    </label>
+    <label> 158 cidades portuguesas
+    	<input type="radio" id="r4" name="rate" value="158 cidades portuguesas">
+    	<span></span>
+    </label>
+    </div>
+
+    <div style="background-color: #386CE5; height:500px;">
+    <button class="button play_button" onclick="play()">PLAY</button>
+    <p id="instructions">Insert the number of players and spies, then click play.</p>
+    <p id="card">Click Play!</p>
+    <button class="button card_button" onclick="show_card()">show card</button>
+    <button class="button card_button" onclick="hide_card()">hide card</button>
+    </div>
+</div>
+
+<script>
+var num_players,spy, spies=[], num_spies,jogador=1;
+var carta;
+function play(){
+  jogador=1; //para se poder recomeçar o jogo carregando no play
+  num_players = document.getElementById("numPLAYERS").value;
+  num_spies = document.getElementById("numSPIES").value;
+  
+  if ( (parseInt(num_players) > 2) != 1 ){
+  	document.getElementById("instructions").innerHTML = "Choose a valid number of players.";
+    return;
+  }
+  
+  if ( (parseInt(num_spies) > 0 && parseInt(num_spies) < 4) != 1 ){
+  	document.getElementById("instructions").innerHTML = "Choose a valid number of spies.";
+    return;
+  }
+  else{
+  	document.getElementById("instructions").innerHTML = "The game is about to start, follow the instructions below."
+  }
+  
+  if (document.getElementById('option1').checked) {
+  	num_spies=num_spies;
+  }
+  else{
+  	num_spies=Math.floor(Math.random() * num_spies)+1;
+  }
+  
+  carta=obter_carta();
+  if ( carta != "card_error" ){
+  	show_cards();
+  }
+  return;
+}
+
+function show_cards(){
+	var i;
+	spy=Math.floor(Math.random() * num_players)+1;
+	document.getElementById("card").innerHTML = "Now each player has to click show card and hide card";
+    
+    spies[0]=spy;
+    spies[1]=spy;
+    spies[2]=spy;
+    
+	if (num_spies==2){
+    	while (spies[1]==spies[0]){
+    		spies[1]=Math.floor(Math.random() * num_players)+1;
+    	}
+    }
+    if (num_spies==3){
+        while (spies[2]==spies[0] || spies[2]==spies[1] || spies[1]==spies[0]){
+        	spies[1]=Math.floor(Math.random() * num_players)+1;
+    		spies[2]=Math.floor(Math.random() * num_players)+1;
+    	}
+    }
+}
+
+function obter_carta(){
+	var carta_escolhida=Math.floor(Math.random() * 677);
+	cartas=["artigo","planta","resto","educação","assembleia","marido","entrada","opinião","tema","sinal","instituição","teoria","capacidade","pensamento","prática","face","frio","comércio","janela","território","campanha","luta","existência","menino","solução","atenção","metro","quadro","investimento","década","vila","diferença","género","prémio","graça","paz","indivíduo","expressão","festa","poeta","custo","exército","crime","índio","dona","comunicação","parede","amigo","vale","voto","próprio","influência","céu","chão","congresso","meio","futebol","motivo","erro","cabo","carreira","risco","governador","madeira","secretário","massa","crescimento","factor","cama","sucesso","literatura","escritor","estilo","nico","órgão","autoridade","estrela","documento","comunidade","conversa","perna","participação","arma","menina","instituto","cabelo","café","certeza","visita","dor","sonho","data","esforço","fazenda","exposição","matéria","máquina","contacto","instrumento","liberdade","superfície","quantidade","som","passagem","sentença","lista","crise","preto","sombra","contracto","ouro","vento","memória","regime","oposição","dedo","investigação","notícia","hospital","discurso","outubro","roupa","pressão","onda","funcionário","aluno","constituição","terreno","volume","conceito","ataque","tratamento","célula","distância","peso","carne","ensino","pintura","banda","carácter","museu","velocidade","acesso","emprego","desejo","ligado","pergunta","fogo","gesto","domínio","peixe","tamanho","batalha","temperatura","romance","favor","espera","intenção","sede","ferro","representante","representação","aplicação","irmã","bilhão","cavalo","jardim","ramo","letra","canto","responsabilidade","revolução","margem","par","destino","revista","folha","mestre","distrito","pagamento","companheiro","iniciativa","tom","caixa","pequeno","concelho","comportamento","juiz","entidade","propriedade","acidente","pele","tentativa","visão","preocupação","crédito","rádio","habitante","imposto","computador","geração","gestão","avaliação","sentimento","moça","vítima","compra","nota","advogado","chuva","torno","corte","espectáculo","esquerda","nação","praça","oportunidade","tecnologia","filosofia","atitude","política","linguagem","monte","estação","dívida","gás","disco","loja","tendência","imprensa","reino","seguro","alteração","instante","príncipe","cadeira","exterior","empresário","consciência","hipótese","limite","redução","personagem","jornalista","grau","cena","tradição","soldado","automóvel","moeda","juro","primeiro-ministro","peito","consequência","salário","estudante","reacção","divisão","elevado","conflito","porto","abertura","utilização","cão","realização","ligação","transporte","dólar","ombro","casamento","clássico","aldeia","saída","actor","esperança","executivo","queda","campeonato","vestido","metade","secção","poesia","intervenção","parque","ponta","tropa","agente","discussão","violência","senador","padrão","calor","referência","missão","impressão","carga","ncleo","busca","acto","complexo","cidadão","tarefa","controle","coronel","marca","edifício","agência","grego","rapariga","praia","frase","partida","solo","jeito","cruz","palácio","perda","presidência","negociação","general","produtor","vantagem","estratégia","bolsa","organismo","dente","página","mina","ponte","comprimento","veículo","teste","bem","gosto","vizinho","pertencente","prazer","sujeito","ajuda","bola","grosso","procura","edição","equipamento","consumidor","vinho","relatório","dono","declaração","alimento","fenómeno","flor","alegria","categoria","distribuição","império","entrevista","renda","chamada","cliente","torre","versão","telefone","escolha","cadeia","breve","feira","fronteira","manifestação","perspectiva","sorriso","exemplo","receita","património","privado","consumo","agricultura","resistência","secretaria","floresta","hotel","substância","conclusão","componente","candidatura","grito","selecção","roda","prisão","ocasião","tabela","fábrica","sequência","evolução","freguesia","composto","canal","dirigente","sorte","leite","comando","composição","perigo","exercício","leitor","aprovado","variação","orçamento","beleza","concepção","instalação","avião","pintor","mandato","leitura","combate","pão","ave","protecção","time","raio","critério","aliado","fruto","diário","opção","sessão","castelo","droga","colega","frequência","crítica","reportagem","poder","tio","contexto","propósito","sítio","fundação","autarquia","senado","arquitectura","fotografia","reserva","navio","lucro","lágrima","camada","capítulo","disposição","independência","paixão","verão","fio","dimensão","acontecimento","ausência","sindicato","clima","símbolo","parlamento","confiança","etapa","alternativa","nomeado","troca","bicho","aula","cuidado","vazio","chave","desenho","hábito","corredor","surpresa","coluna","prefeito","religião","fome","evento","vidro","prefeitura","diabo","conferência","aparelho","ritmo","inflação","debate","faculdade","garantia","departamento","bocado","chapéu","ciclo","neto","privatização","rainha","associado","sensação","cigarro","posse","raiz","lançamento","casal","província","adversário","metal","argumento","certo","apresentação","exame","explicação","activo","expectativa","tiro","poema","despesa","resolução","medicina","junta","inimigo","corrida","milhar","lua","denominado","estabelecimento","barro","golpe","índice","lábio","cenário","impacto","mensagem","carvalho","motor","pedaço","contedo","destaque","financiamento","leste","concurso","culpa","retrato","sexta-feira","designação","marquês","tia","norma","inverno","prédio","observação","faixa","coragem","madrugada","planeta","obrigação","código","engenheiro","vereador","via","excepção","escada","oeste","tecido","cheiro","interpretação","segredo","publicação","centímetro","pescoço","definição","honra","funcionamento","montanha","revisão","comandante","copa","turismo","chegada","baseado","ovo","asa","âmbito","democracia","cozinha","segunda-feira","profissão","votação","feito","cientista","rocha","barco","paciente","apto","ameaça","gabinete","pedido","dança","petróleo","novidade","universo","federação","moda","compromisso","fé","especialista","costume","mecanismo","corda","parágrafo","continente","bloco","diálogo","desafio","academia","tratado","nordeste","sexo","escrita","horizonte","usuário","sono","saudade","marcha","álcool","fórmula","personalidade","proprietário","liderança","aliança","cálculo","escala","osso","raça","féria","actuação","bandeira","estreito","colégio","gato","nuvem","procedimento","riso","extensão","nascimento","transformação","corpus","classificação","cartão","exploração","partícula","círculo","avô","expansão","papa","prejuízo","passeio","canção","patrão","potencial","horário","derrota","desempenho","deserto","emoção","aprovação","gado","competição","juventude","orientação","colecção","almoço","espelho","circunstância","sócio","capitão","protesto","centena","avenida","exportação","julgamento","festival","pau"];
+	if (document.getElementById('r1').checked) {
+    		return dicionario_575words_ENG(Math.floor(Math.random() * 575));  		
+	}
+	else if(document.getElementById('r2').checked){
+        	return cartas[carta_escolhida];
+    	}
+    else if(document.getElementById('r3').checked){
+      		return dicionario_insultos_PT(Math.floor(Math.random() * 309));
+        }
+    else if(document.getElementById('r4').checked){
+      		return dicionario_cidades_PT(Math.floor(Math.random() * 158));
+        }
+    return "0"
+}
+
+function dicionario_575words_ENG(num_da_palavra){
+	palavras = ["act","active","activity","age","air","amount","answer","anything","apple","area","arm","army","art","ask","attack","baby","back","bad","bag","ball","bank","base","basket","bath","bear","beautiful","bed","bedroom","beer","bell","big","bird","birth","birthday","bit","bite","black","block","blood","blow","blue","board","boat","body","bone","book","border","bottle","bottom","bowl","box","boy","branch","brave","bread","breakfast","bridge","brother","brown","brush","burn","business","bus","buy","cake","call","can","candle","cap","car","card","care","carry","cat","chair","chance","change","chicken","child","chocolate","choice","city","clock","clothes","cloud","coffee","coat","cold","comfortable","common","computer","condition","control","cook","corner","cost","count","country","course","cover","crash","cross","cry","cup","cut","dance","dark","daughter","day","dead","deep","desk","dinner","direction","dish","dog","door","double","draw","dream","dress","drink","drive","drop","dust","duty","ear","earth","east","eat","education","effect","egg","end","equal","entrance","escape","evening","examination","example","exercise","eye","face","fact","fail","fall","family","farm","father","fat","fault","fear","feed","feel","female","few","fight","fill","film","finger","finish","fire","fish","fix","floor","flower","fly","fold","food","foot","football","force","form","freedom","friend","front","fruit","fun","funny","future","game","garden","gate","general","gift","give","glad","glass","go","god","gold","good","grandfather","grandmother","grass","great","green","ground","group","hair","half","hall","hand","hat","hate","head","heavy","heart","height","hello","help","hide","high","hit","hold","hole","holiday","home","hope","horse","hospital","hotel","house","hour","hurry","husband","hurt","ice","idea","increase","inside","iron","invite","island","it","job","join","juice","jump","keep","key","kill","kind","king","kitchen","knee","knife","ladder","lady","land","laugh","lead","leave","leg","length","lesson","letter","library","lie","life","light","lip","list","listen","lock","long","look","love","low","luck","machine","main","make","male","man","many","map","mark","market","matter","meal","meat","medicine","meet","member","mention","method","middle","milk","mind","minute","miss","mistake","mix","model","moment","money","month","morning","most","mother","mountain","mouth","move","music","name","nation","nature","neck","net","news","newspaper","night","noise","north","nose","nothing","notice","number","object","offer","office","oil","one","opposite","orange","order","other","outside","page","pain","paint","pair","paper","parent","park","part","partner","party","pass","past","path","pay","peace","pen","people","period","person","piano","pick","picture","piece","pin","place","plane","plant","plastic","plate","play","plenty","point","police","pool","position","possible","potato","power","present","press","price","private","prize","problem","produce","promise","public","pull","push","put","queen","question","quiet","radio","rain","raise","reach","read","record","red","remove","rent","repair","repeat","reply","report","rest","restaurant","result","rice","rich","ride","ring","rise","road","rock","room","round","rule","run","rush","sad","safe","sail","salt","sand","save","school","science","search","seat","second","sell","sentence","serve","sex","shake","shape","share","she","shine","ship","shirt","shoe","shoot","shop","shoulder","show","sick","side","signal","silly","silver","simple","single","sing","sink","sister","size","skill","skin","skirt","sky","sleep","slip","smell","smile","smoke","snow","sock","soft","son","sound","soup","south","space","special","speed","spell","spend","sport","spread","spring","square","stand","star","start","station","stay","steal","step","still","stomach","stop","store","storm","story","street","structure","student","study","stupid","subject","substance","sugar","summer","sun","support","surprise","sweet","swim","table","talk","taste","tea","teach","team","tear","telephone","television","tell","tennis","test","thing","tie","title","today","toe","tomorrow","tonight","tool","tooth","top","total","touch","town","train","travel","tree","trouble","trust","turn","type","uncle","unit","use","usual","vegetable","village","voice","visit","wait","wake","walk","wash","watch","water","way","wear","weather","wedding","week","weight","welcome","West","wheel","white","wife","will","win","wind","window","wine","winter","wish","woman","wonder","word","work","world","worry","yard","yesterday","you","young","two"];
+    
+ return palavras[num_da_palavra];
+
+}
+
+function dicionario_insultos_PT(num_da_palavra){
+	//310 insultos
+	palavras = ["Aldrabão"," abécula"," agarrado"," analfabeto"," atraso de vida"," azeiteiro"," alcoviteira"," aselha"," asno"," anjinho"," asqueroso"," arruaceiro"," artolas","Badameco"," bandido"," bruto"," besta quadrada"," barrigudo"," brutamontes"," borra-botas"," bufo"," boca de xarroco"," boi"," basbaque"," biltre"," bexigoso"," bichona"," bêbedo"," bebedolas"," batoque"," banana"," bardajona"," badalhoca"," bisbilhoteira"," bandalho"," bota de elástico"," baldas"," brochista"," boneca de trapos"," beata"," bronco"," bexigoso"," betinho"," bárbaro","Cunanas"," camelo"," chalado"," camafeu"," cona de sabão"," cara de cu à paisana"," coirão"," choninhas"," carroceiro"," cabeçudo"," cavalgadura"," canalha"," cretino"," calhandreira"," caga-tacos"," cegueta"," caixa de óculos"," cornudo"," coxo"," candongueiro"," careca"," chupado das carochas"," copinho de leite"," cacique"," calão"," cabra"," cabrão"," cusca"," coscuvilheira"," cão"," cabeça no ar"," convencido"," chanfrado"," cagão"," chato"," cobardola"," cavalona"," chico-esperto"," charlatão"," caloteiro"," cigano"," comuna"," carrancudo"," corno"," caceteiro"," canalha"," carapau de corrida"," choné"," cabeça de abóbora","Delambida"," desenxabida"," doido varrido"," doidivanas"," desmancha prazeres"," desastrada"," desengonçado"," desaustinado"," desbocado","Escanifobética"," estafermo"," embusteiro"," estúpido"," esqueleto vaidoso"," engraxador"," esgalgado"," empecilho"," estroina"," escarumba"," estouvada"," estupor"," espantalho"," estapafúrdio"," energúmeno"," espalhafatoso"," enjoado da trampa","Flausina"," farsante"," filho da puta"," fufa"," fersureira"," falhado"," foleiro"," facínora"," falsário"," franganote"," fanfarrão"," fanático"," fanchono"," filho da mãe","Gatuno"," gordalhufo"," gabiru"," galinha choca"," galdéria"," gabarola"," gosma"," gandulo"," ganancioso"," garganeira","Histérica"," herege","Idiota"," imbecil"," incapaz"," incompetente"," inútil","Javardo"," judeu","Lambisgóia"," ladrão"," lavajão"," lambéconas"," lambe-botas"," lingrinhas"," larápio"," larilas"," labrego"," louco"," lorpa"," lunático","Morcão"," malacueco"," maluco"," mariquinhas pé-de-salsa"," meliante"," mentiroso"," malandro"," malandreco"," malandrim"," marreco"," maneta"," mouco"," mariconço"," maricas"," menino da mamã"," mastronço"," mostrengo"," moina"," meia-leca"," medroso"," monhé"," molengão"," mafioso"," medricas"," masoquista"," mineteiro"," maltrapilho"," maria-vai-com-as-outras"," miserável"," magricela"," mula"," mal enjorcado"," mimado","Nódoa"," nulidade"," nabo"," nojento"," não-tens-onde-cair-morto"," nababo","Otário"," olhos de carneiro mal morto"," orelhas de abano"," obcecado"," ordinário"," obstinado","Palerma"," parvalhão"," pateta"," parvo"," porcalhão"," piroso"," pirata"," piolhoso"," peida-gadoxa"," pantomineiro"," pote de banhas"," pernas de alicate"," pelintra"," patego"," panasca"," paneleiro"," putéfia"," puta"," panilas"," pés de chumbo"," patife"," perliquiteques"," palhaço"," palhaçote"," porco"," punheteiro"," preguiçoso"," pacóvio"," pobre de espírito"," proxeneta"," patinho feio"," panhonhas"," pintor"," parasita"," presunçoso"," palonça"," peneirenta"," pobre diabo","Quadrilheira"," queixinhas"," quatro-olhos","Ranhoso"," reles"," rasca"," rameira"," rabeta"," rafeiro"," reaccionário"," reaças"," raquítico","Salafrário"," safardana"," sevandija"," sacripanta"," sacrista"," sacana"," sovina"," somítico"," safado"," sabujo"," saloio"," soba"," sebento"," sapatona"," sádico"," serigaita"," sarnento"," snob","Tarado"," trombalazanas"," trapaceiro"," trabeculoso"," tísico"," trombudo"," trauliteiro"," tinhoso"," trique-lariques"," tosco"," totó"," trombeiro"," trouxa"," tonto"," traste"," trinca-espinhas"," troca-tintas","Unhas de fome"," urso","Vaca gorda"," vigarista"," vândalo"," vígaro"," vigarista"," velhaco"," vendido"," vagabundo"," vira-casacas"," vaidoso","Xé-xé","Zero à esquerda"," zarolho"," Zé-ninguém"];
+
+return palavras[num_da_palavra];
+
+}
+
+function dicionario_cidades_PT(num_da_palavra){ // 158 cidades
+
+	palavras = ["Abrantes","Agualva-Cacém","Águeda","Albergaria-a-Velha","Albufeira","Alcácer do Sal","Alcobaça","Alfena","Almada","Almeirim","Alverca do Ribatejo","Amadora","Amarante","Amora","Anadia","Angra do Heroísmo","Aveiro","Barcelos","Barreiro","Beja","Borba","Braga","Bragança","Caldas da Rainha","Câmara de Lobos","Caniço","Cantanhede","Cartaxo","Castelo Branco","Chaves","Coimbra","Costa da Caparica","Covilhã","Elvas","Entroncamento","Ermesinde","Esmoriz","Espinho","Esposende","Estarreja","Estremoz","Évora","Fafe","Faro","Fátima","Felgueiras","Figueira da Foz","Fiães","Freamunde","Funchal","Fundão","Gafanha da Nazaré","Gandra","Gondomar","Gouveia","Guarda","Guimarães","Horta","Ílhavo","Lagoa","Lagos","Lamego","Leiria","Lisboa","Lixa","Loulé","Loures","Lourosa","Macedo de Cavaleiros","Machico","Maia","Mangualde","Marco de Canaveses","Marinha Grande","Matosinhos","Mealhada","Mêda","Miranda do Douro","Mirandela","Montemor-o-Novo","Montijo","Moura","Odivelas","Olhão","Oliveira de Azeméis","Oliveira do Bairro","Oliveira do Hospital","Ourém","Ovar","Paços de Ferreira","Paredes","Penafiel","Peniche","Peso da Régua","Pinhel","Pombal","Ponta Delgada","Ponte de Sor","Portalegre","Portimão","Porto","Póvoa de Santa Iria","Póvoa de Varzim","Praia da Vitória","Quarteira","Queluz","Rebordosa","Reguengos de Monsaraz","Ribeira Grande","Rio Maior","Rio Tinto","Sabugal ","Sacavém","Samora Correia","Santa Comba Dão","Santa Cruz","Santa Maria da Feira","Santana","Santarém","Santiago do Cacém","Santo Tirso","São João da Madeira","São Mamede de Infesta","São Pedro do Sul","Lordelo","Seia","Seixal","Senhora da Hora","Serpa","Setúbal","Silves","Sines","Tarouca","Tavira","Tomar","Tondela","Torres Novas","Torres Vedras","Trancoso","Trofa","Valbom","Vale de Cambra","Valença","Valongo","Valpaços","Vendas Novas","Viana do Castelo","Vila Baleira","Vila do Conde","Vila Franca de Xira","Vila Nova de Famalicão","Vila Nova de Foz Côa","Vila Nova de Gaia","Vila Nova de Santo André","Vila Real","Vila Real de Santo António","Viseu","Vizela"];
+
+return palavras[num_da_palavra];
+
+}
+
+function hide_card(){
+	document.getElementById("card").innerHTML = "Now give the phone/computer to the next player and tell him/her to click show card";
+}
+
+function show_card() {
+var j;
+check=false;
+if (num_spies==1){
+    	if (jogador==spy){
+		document.getElementById("card").innerHTML = "Player "+ jogador + ": you are the spy";
+	}
+	else{
+		document.getElementById("card").innerHTML = "Player "+ jogador + ": "+ carta;
+	}
+}
+else{
+    for (j = 0; j < num_players; j++) {
+        if (jogador==spies[j]){
+            	document.getElementById("card").innerHTML = "Player "+ jogador + ": you are the spy. There are " + num_spies + " spies";
+		check=true;
+        }
+    }
+    if (check==false){
+        document.getElementById("card").innerHTML = "Player "+ jogador + ": "+ carta;
+    }
+    check=false;
+}
+if (jogador>num_players){
+    document.getElementById("card").innerHTML = "Now set a timer, ask questions and find the spy! After the timer finnishes all players must vote on who they think the spy is.";
+}
+jogador+=1;
+}
+
+</script>
+
+
+</body>
+</html>
